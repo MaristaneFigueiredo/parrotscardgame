@@ -1,0 +1,161 @@
+@import url('https://fonts.googleapis.com/css2?family=Encode+Sans:wght@100;200;300;400;500;600;700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;1,100;1,300;1,400;1,500;1,700&display=swap');
+
+* {
+	box-sizing:border-box
+} 
+
+
+
+/* .container {
+    background: #EEF9BF;
+    width: 375px;
+    display: flex;
+    flex-direction: column ;
+    align-items: center; 
+    
+}
+
+.content {
+    background-color: blue;
+    width: 200px;
+    height: 50px;
+    margin: 5px;
+}*/ /*tem que ser margem, pois vc quer descer todo elemento*/
+    
+
+
+/*até a largura chegar em 376px, o container estará com a direção em coluna conforme o descrito acima 
+    a parte mobile tá toda definida acima*/
+/*@media (min-width: 376px){
+    .container{
+        flex-direction: row;
+        background-color: blue;
+    }
+} */
+
+
+body {
+   background: #EEF9BF;   
+   /* margin: 0 auto;  */ /*centralizando o propiro elemento */
+   display: flex;
+   justify-content: center;
+   align-items: flex-start;
+}  
+
+/*cabeçalho e figuras*/
+.container {
+     background: red;  
+     width: 375px; /*mobile*/
+     margin-top: 40px;        
+    
+     /* height: auto;  */
+     /* margin-top:40px; */
+     /* margin-left: 12px;
+     margin-right: 11px;  */
+     
+
+    display: flex;
+    flex-direction: column ; /*talvez vc pode ter problema com o titulo*/
+    align-items: center;  
+    
+}
+
+
+.carta{
+    background-color: #A7E9AF;    
+    
+    width: 117px;
+    height: 146px;
+    border-radius:10px; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    margin: 18px; 
+}
+/* 
+.imagem{
+    
+    left: 887px;
+    top: 174px;  
+} */
+
+.cartaVerso {
+    /* display: block; */
+    display: none;
+}
+
+.cartaVerso img{
+    width: 100px;
+    height: 100px;
+}
+
+.cartaFrente {
+    /* display: none; */
+    display: block;
+}
+
+.cartaFrente img {
+    width: 50px;
+    height: 50px;
+
+}
+.cabecalho{    
+    margin-bottom: 30px;
+    text-align: center;
+    width: 312px;
+    height: 63px;
+}
+.titulo{  
+    
+    
+    /* left: 12px;
+    top: 40px;  */
+
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 36px;
+    line-height: 42px;
+    /* text-align: center; */
+
+/* letter-spacing: -0.004em; */
+
+    color: #75B79E;
+
+}
+
+@media (min-width: 376px){
+    .container{
+        background-color: blue; 
+        margin-top:37px;
+        width:895px;
+        height: auto; 
+        
+
+         /* Quebra página */
+
+
+        /* flex-direction: row; */
+        /* justify-content: center;  */
+        /* align-items: center; */
+
+       
+        /*margin-left:122px; */
+        
+    }
+
+    .cartas{
+        display: flex; 
+        flex-wrap: wrap;
+    }
+    .cabecalho{
+        width: 550px;
+        height: 63px;
+    }
+    /* mudar tamanho título */
+    .titulo{        
+        font-size: 56px;
+        line-height: 66px;
+    }
+} 
