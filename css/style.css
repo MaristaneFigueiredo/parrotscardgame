@@ -6,45 +6,19 @@
 
 
 
-/* .container {
-    background: #EEF9BF;
-    width: 375px;
-    display: flex;
-    flex-direction: column ;
-    align-items: center; 
-    
-}
-
-.content {
-    background-color: blue;
-    width: 200px;
-    height: 50px;
-    margin: 5px;
-}*/ /*tem que ser margem, pois vc quer descer todo elemento*/
-    
-
-
-/*até a largura chegar em 376px, o container estará com a direção em coluna conforme o descrito acima 
-    a parte mobile tá toda definida acima*/
-/*@media (min-width: 376px){
-    .container{
-        flex-direction: row;
-        background-color: blue;
-    }
-} */
-
 
 body {
    background: #EEF9BF;   
-   /* margin: 0 auto;  */ /*centralizando o propiro elemento */
+   margin: 0 auto;   /*centralizando o propiro elemento */
    display: flex;
    justify-content: center;
    align-items: flex-start;
+   align-items: center;
 }  
 
 /*cabeçalho e figuras*/
 .container {
-     background: red;  
+     /* background: red;   */
      width: 375px; /*mobile*/
      margin-top: 40px;        
     
@@ -127,14 +101,14 @@ body {
 
 @media (min-width: 376px){
     .container{
-        background-color: blue; 
+        background-color: blue;  
         margin-top:37px;
-        width:895px;
+        /* width:895px; */
+        width:920px;
         height: auto; 
         
 
-         /* Quebra página */
-
+         
 
         /* flex-direction: row; */
         /* justify-content: center;  */
@@ -148,6 +122,7 @@ body {
     .cartas{
         display: flex; 
         flex-wrap: wrap;
+        justify-contente: space-around;
     }
     .cabecalho{
         width: 550px;
