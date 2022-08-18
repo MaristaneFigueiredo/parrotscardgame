@@ -55,8 +55,8 @@ body {
 } */
 
 .cartaVerso {
-    /* display: block; */
-    display: none;
+    display: block;
+    /* display: none; */
 }
 
 .cartaVerso img{
@@ -65,8 +65,8 @@ body {
 }
 
 .cartaFrente {
-    /* display: none; */
-    display: block;
+     display: none; 
+    /* display: block; */
 }
 
 .cartaFrente img {
@@ -74,18 +74,18 @@ body {
     height: 50px;
 
 }
+
+.viraCarta{
+    display: block; 
+}
 .cabecalho{    
     margin-bottom: 30px;
     text-align: center;
     width: 312px;
     height: 63px;
 }
-.titulo{  
-    
-    
-    /* left: 12px;
-    top: 40px;  */
 
+.titulo{    
     font-family: 'Roboto';
     font-style: normal;
     font-weight: 700;

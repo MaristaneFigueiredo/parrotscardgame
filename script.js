@@ -52,7 +52,8 @@ const imagensFrentes = ['bobrossparrot.gif', 'explodyparrot.gif', 'fiestaparrot.
      
         contador++;
     }
-
+   
+    // console.log('cartasSelecionadas-logo após o push',cartasSelecionadas);
 
 
      // Esta função pode ficar separada do código acima, onde você preferir
@@ -78,22 +79,97 @@ const imagensFrentes = ['bobrossparrot.gif', 'explodyparrot.gif', 'fiestaparrot.
                                         `;                                      
     }
 
+console.log('cartasSelecionadas-depois de exibição',cartasSelecionadas);
+
+//let QtdeJogadas = 0;
+let primeiraCartaJaFoiVirada = false;
+let cartaVirada1 = null;
+let cartaVirada2 = null;
+let par = 0;
+let verificandoJogada = false;
+
+function virarCarta(carta) {
+    
+
+    if(verificandoJogada === true) {
+        return;//sai da função
+    }
+
+    const cartaVerso = carta.querySelector('.cartaVerso');
+    cartaVerso.style.display = "none";
+
+    const cartaFrente = carta.querySelector('.cartaFrente');
+    cartaFrente.style.display = "block";
+
+    
+
+    if (primeiraCartaJaFoiVirada === true){
+        cartaVirada2 = carta;
+        verificarPar();        
+    } else{
+        primeiraCartaJaFoiVirada = true;
+        cartaVirada1 = carta;       
+    }
+}
+
+function verificarPar() {
+    verificandoJogada = true;
+
+    if(cartaVirada1.querySelector('.cartaFrente img').getAttribute('src') === cartaVirada2.querySelector('.cartaFrente img').getAttribute('src')){
+        cartaVirada1.setAttribute("onclick", "");
+        cartaVirada2.setAttribute("onclick", "");
+        resetarJogada();       
+        par++ 
+    } else {
+        setTimeout(desvirarCartas, 1000);     
+        
+    }
+
+}
 
 
-// function virarCarta(carta) {
-//     const cartaVerso = carta.querySelector('.cartaVerso');
-//     cartaVerso.style.display = "none";
+function desvirarCartas(){
+    cartaVirada1.querySelector('.cartaVerso').style.display = "block";
+    cartaVirada1.querySelector('.cartaFrente').style.display = "none";
+    cartaVirada2.querySelector('.cartaVerso').style.display = "block";
+    cartaVirada2.querySelector('.cartaFrente').style.display = "none";
+    resetarJogada(); 
+    
 
-//     const cartaFrente = carta.querySelector('.cartaFrente');
-//     cartaFrente.style.display = "block";
+}
+
+function resetarJogada(){
+    primeiraCartaJaFoiVirada = false;
+    cartaVirada1 = null;
+    cartaVirada2 = null;
+    verificandoJogada = false;
+}
+    // QtdeVirada
+    // let cartaVirada1 = cartaFrente.innerHTML;
+    
+    // console.log('cartaVirada1',cartaVirada1);
+
+    // - testar se carta virada 1 é igual a carta virada2
+    // - criar uma variável par e só adiciona 1, só adiciona 1 quando as duas cartas derem certos. 
+
+
+
+// for(let i = 0; i < cartasSelecionadas.length; i++) {    
+
+//     cartas.innerHTML = cartas.innerHTML + `
+//                                       <div class='carta'>
+//                                           <div class='cartaVerso' onclick='virarCarta(this)'><img src="./imagens/front.png" ></div>                                                                                                                                             
+                                          
+//                                           <div class='cartaFrente' onclick='virarCarta(this)><img src="./imagens/${cartasSelecionadas[i]}" ></div> 
+                                         
+//                                       </div>
+//                                     `;                                      
 // }
 
 
-function virarCarta(carta) {
-         const cartaVerso = carta.querySelector('.cartaVerso');
-         cartaVerso.style.display = "none";
+
+// function virarCarta(elemento) {
     
-         const cartaFrente = carta.querySelector('.cartaFrente');
-         cartaFrente.style.display = "block";
-}
+//     elemento.classList.add('viraCarta');
+// }
     

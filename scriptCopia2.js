@@ -20,32 +20,40 @@ const imagensFrentes = ['bobrossparrot.gif', 'explodyparrot.gif', 'fiestaparrot.
 
 
 
-while (qtdeTotalCartas % 2 !== 0) {
-    alert('Só é permitido números pares.'); //2
-    qtdeTotalCartas = prompt('Com quantas você deseja jogar? ');
-}
+    while (qtdeTotalCartas % 2 !== 0) {
+        alert('Só é permitido números pares.'); //2
+        qtdeTotalCartas = prompt('Com quantas você deseja jogar? ');
+    }
 
-while ((qtdeTotalCartas < 4) || (qtdeTotalCartas > 14)) {
-    alert('A quantidade de cartas permitas para o jogo são de 4 até 14.');
-    qtdeTotalCartas = prompt('Com quantas você deseja jogar? ');
-}
-
-
-
-let contador = 0;
-while ((qtdeTotalCartas / 2) > contador) { //qtdeTotalCartas 4
-    const cartas = document.querySelector('.cartas');
-    console.log(cartas);
+    while ((qtdeTotalCartas < 4) || (qtdeTotalCartas > 14)) {
+        alert('A quantidade de cartas permitas para o jogo são de 4 até 14.');
+        qtdeTotalCartas = prompt('Com quantas você deseja jogar? ');
+    }
 
 
-    //Pega uma posição aleatória no array 
-    const posicaoAleatoria = Math.floor(Math.random() * (imagensFrentes.length));
-    console.log('posicaoAleatoria',posicaoAleatoria)
 
-    //Adicona no array "carta selecionas" a mesma quarta duas vezes
-    cartasSelecionadas.push(imagensFrentes[posicaoAleatoria]);
-    cartasSelecionadas.push(imagensFrentes[posicaoAleatoria]);
-    console.log(cartasSelecionadas)
+    let contador = 0;
+    while ((qtdeTotalCartas / 2) > contador) { //qtdeTotalCartas 4 entrará 2x
+        cartas = document.querySelector('.cartas');   
+
+
+        //Pega uma posição aleatória no array 
+        const posicaoAleatoria = Math.floor(Math.random() * (imagensFrentes.length));
+    
+
+        //Adicona no array "carta selecionas" -a mesma quarta duas vezes
+        cartasSelecionadas.push(imagensFrentes[posicaoAleatoria]);
+        cartasSelecionadas.push(imagensFrentes[posicaoAleatoria]);
+    
+
+        //Retira a imagem do array "imagensFrentes" para a mesma não ser escolhida outra vez no modo randômico. 
+        imagensFrentes.splice(posicaoAleatoria, 1);
+        
+     
+        contador++;
+    }
+
+
 
      // Esta função pode ficar separada do código acima, onde você preferir
     function comparador() { 
@@ -53,45 +61,41 @@ while ((qtdeTotalCartas / 2) > contador) { //qtdeTotalCartas 4
     }                        
 
     cartasSelecionadas.sort(comparador); // Após esta linha, a minhaArray estará embaralhada
-    // console.log(cartasSelecionadas);
+   
+    
     
 
-    // //Retira a imagem do array "imagensFrentes" para a mesma não ser contada mais no modo randômico. 
-    // imagensFrentes.splice(posicaoAleatoria, 1);
-    // console.log('imagensFrentesComElementoRemovido',imagensFrentes);
+    // Populando a DOM - divs possuirão as cartas   
+    for(let i = 0; i < cartasSelecionadas.length; i++) {    
 
-
-    // Estou criando dinamicamente as div, ou seja populando a DOM. Essas divs possuirão as cartas
-    cartas.innerHTML = cartas.innerHTML + `
+        cartas.innerHTML = cartas.innerHTML + `
                                           <div class='carta' onclick='virarCarta(this)'>
                                               <div class='cartaVerso'><img src="./imagens/front.png" ></div>                                                                                                                                             
                                               
-                                              <div class='cartaFrente'><img src="./imagens/${cartasSelecionadas[contador]}" ></div>
+                                              <div class='cartaFrente'><img src="./imagens/${cartasSelecionadas[i]}" ></div> 
+                                             
                                           </div>
-                                        `;
-                                        // <div class='cartaFrente'><img src="./imagens/${imagensFrentes[posicaoAleatoria]}" ></div>                                                 
+                                        `;                                      
+    }
 
-    cartas.innerHTML = cartas.innerHTML + `
-                                         <div class='carta' onclick='virarCarta(this)'>
-                                             <div class='cartaVerso'><img src="./imagens/front.png" ></div>                                                                                             
-                                        
-                                             <div class='cartaFrente'><img src="./imagens/${cartasSelecionadas[contador]}" ></div>                                                 
-                                        </div>
-                                        `;
 
-    //Retira a imagem do array "imagensFrentes" para a mesma não ser contada mais no modo randômico. 
-    imagensFrentes.splice(posicaoAleatoria, 1);
-    console.log('imagensFrentesComElementoRemovido',imagensFrentes);    
-    
-    contador++;
-    // cartasSolicitadas.push();
-    
-}
+
+// function virarCarta(carta) {
+//     const cartaVerso = carta.querySelector('.cartaVerso');
+//     cartaVerso.style.display = "none";
+
+//     const cartaFrente = carta.querySelector('.cartaFrente');
+//     cartaFrente.style.display = "block";
+// }
+
 
 function virarCarta(carta) {
-    const cartaVerso = carta.querySelector('.cartaVerso');
-    cartaVerso.style.display = "none";
 
-    const cartaFrente = carta.querySelector('.cartaFrente');
-    cartaFrente.style.display = "block";
+
+    const cartaVerso = carta.querySelector('.cartaVerso');
+         cartaVerso.style.display = "none";
+    
+         const cartaFrente = carta.querySelector('.cartaFrente');
+         cartaFrente.style.display = "block";
 }
+    
