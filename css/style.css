@@ -54,25 +54,31 @@ body {
     top: 174px;  
 } */
 
-.cartaVerso {
-    display: block;
+ .cartaVerso {
+    color:black;
+    /* display: block; */
     /* display: none; */
-}
+} 
 
 .cartaVerso img{
     width: 100px;
     height: 100px;
 }
 
-.cartaFrente {
-     display: none; 
+ .cartaFrente {
+    color:black;
+     /* display: none;  */
     /* display: block; */
-}
+} 
 
 .cartaFrente img {
     width: 50px;
     height: 50px;
 
+}
+
+.remover{
+    display: none; 
 }
 
 .viraCarta{
@@ -101,7 +107,7 @@ body {
 
 @media (min-width: 376px){
     .container{
-        background-color: blue;  
+        /* background-color: blue;   */
         margin-top:37px;
         /* width:895px; */
         width:920px;

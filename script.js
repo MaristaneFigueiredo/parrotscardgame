@@ -23,6 +23,7 @@ const imagensFrentes = ['bobrossparrot.gif', 'explodyparrot.gif', 'fiestaparrot.
     while (qtdeTotalCartas % 2 !== 0) {
         alert('Só é permitido números pares.'); //2
         qtdeTotalCartas = prompt('Com quantas você deseja jogar? ');
+   
     }
 
     while ((qtdeTotalCartas < 4) || (qtdeTotalCartas > 14)) {
@@ -52,8 +53,7 @@ const imagensFrentes = ['bobrossparrot.gif', 'explodyparrot.gif', 'fiestaparrot.
      
         contador++;
     }
-   
-    // console.log('cartasSelecionadas-logo após o push',cartasSelecionadas);
+
 
 
      // Esta função pode ficar separada do código acima, onde você preferir
@@ -73,103 +73,138 @@ const imagensFrentes = ['bobrossparrot.gif', 'explodyparrot.gif', 'fiestaparrot.
                                           <div class='carta' onclick='virarCarta(this)'>
                                               <div class='cartaVerso'><img src="./imagens/front.png" ></div>                                                                                                                                             
                                               
-                                              <div class='cartaFrente'><img src="./imagens/${cartasSelecionadas[i]}" ></div> 
+                                              <div class='cartaFrente remover'><img src="./imagens/${cartasSelecionadas[i]}" ></div> 
                                              
                                           </div>
                                         `;                                      
     }
 
-console.log('cartasSelecionadas-depois de exibição',cartasSelecionadas);
 
-//let QtdeJogadas = 0;
-let primeiraCartaJaFoiVirada = false;
-let cartaVirada1 = null;
-let cartaVirada2 = null;
-let par = 0;
-let verificandoJogada = false;
 
-function virarCarta(carta) {
-    
+// function virarCarta(carta) {
+//     const cartaVerso = carta.querySelector('.cartaVerso');
+//     cartaVerso.style.display = "none";
 
-    if(verificandoJogada === true) {
-        return;//sai da função
+//     const cartaFrente = carta.querySelector('.cartaFrente');
+//     cartaFrente.style.display = "block";
+// }
+
+
+
+let primeiraCartaFoiVirada = false;
+let versoPassarinho = null;
+let frenteFigurinha = null;
+let primeiraCartaImagem = null;
+let segundaCartaImagem = null;
+let primeiraCartaVirada = null;
+let primeiraCartaVerso = null;
+let segundaCartaVirada = null;
+let segundaCartaVerso = null;
+let iniciouEscolhaDosPares = false;
+let qtdeViradaCarta = 0;
+let qtdeAcertos = 0;
+let qtdeErros = 0;
+
+
+function virarCarta(carta) {   
+   
+  
+    if(iniciouEscolhaDosPares === true){
+        return; //Não pode continuar enquanto não fizer a checagem de duas cartas
     }
+   
+    qtdeViradaCarta++;
+    // const versoPassarinho = carta.querySelector('.cartaVerso');
+    versoPassarinho = carta.querySelector('.cartaVerso');
+    versoPassarinho.classList.toggle('remover'); 
 
-    const cartaVerso = carta.querySelector('.cartaVerso');
-    cartaVerso.style.display = "none";
-
-    const cartaFrente = carta.querySelector('.cartaFrente');
-    cartaFrente.style.display = "block";
+    // const frenteFigurinha = carta.querySelector('.cartaFrente');
+    frenteFigurinha = carta.querySelector('.cartaFrente');
+    frenteFigurinha.classList.toggle('remover'); 
 
     
-
-    if (primeiraCartaJaFoiVirada === true){
-        cartaVirada2 = carta;
-        verificarPar();        
-    } else{
-        primeiraCartaJaFoiVirada = true;
-        cartaVirada1 = carta;       
-    }
-}
-
-function verificarPar() {
-    verificandoJogada = true;
-
-    if(cartaVirada1.querySelector('.cartaFrente img').getAttribute('src') === cartaVirada2.querySelector('.cartaFrente img').getAttribute('src')){
-        cartaVirada1.setAttribute("onclick", "");
-        cartaVirada2.setAttribute("onclick", "");
-        resetarJogada();       
-        par++ 
+    if (primeiraCartaFoiVirada === false) {        
+        primeiraCartaVirada = carta.querySelector('.cartaFrente');
+        primeiraCartaVerso = carta.querySelector('.cartaVerso');
+        primeiraCartaImagem = carta.querySelector('.cartaFrente img').getAttribute('src'); 
+        primeiraCartaFoiVirada = true;
     } else {
-        setTimeout(desvirarCartas, 1000);     
+        segundaCartaVirada = carta.querySelector('.cartaFrente');   
+        segundaCartaVerso = carta.querySelector('.cartaVerso');   
+        segundaCartaImagem = carta.querySelector('.cartaFrente img').getAttribute('src');
         
+        iniciouEscolhaDosPares = true; // Iniciou a checagem dos pares, não é permitido clicar em outra carta
+        // primeiraCartaVirada.setAttribute("onclick", "");
+        // segundaCartaVirada.setAttribute("onclick", "");
+        // carta.setAttribute("onclick", "");
+        // if (carta.getAttribute('onclick') !== null) {
+        //     console.log("'carta.getAttribute('onclick')", carta.getAttribute('onclick'));
+        //     carta.setAttribute("onclick", "");
+        //     console.log("'carta.getAttribute('onclick')", carta.getAttribute('onclick'));
+        // }
+        
+        setTimeout(()=>verificarCartasPares(primeiraCartaImagem,segundaCartaImagem), 2000 );
+        
+        // verificarCartasPares(primeiraCartaImagem,segundaCartaImagem) 
+        console.log('volto aqui');
+        
+    }    
+}
+
+
+
+function verificarCartasPares (primeiraCartaImagem, segundaCartaImagem) {
+    console.log('verificarPar-primeiraCartaImagem', primeiraCartaImagem);
+    console.log('verificarPar-segundaCartaImagem', segundaCartaImagem);
+    
+    if (primeiraCartaImagem !== segundaCartaImagem)  {
+           setTimeout(desvirarCartas, 4000);           
+            qtdeErros++;
+            // resertarVariaveis(); /*falar com igor)
+    } else {
+       qtdeAcertos++; 
+       resertarVariaveis();
+     }
+     iniciouEscolhaDosPares = false; //Finalizou a checagem dos pares, será permitido clicar em outra carta
+    //  verificarFinalJogo();
+}
+
+function desvirarCartas(carta) {
+   
+    alert('pensando');
+    console.log('primeiraCartaVirada', primeiraCartaVirada);
+    console.log('segundaCartaVirada', segundaCartaVirada);
+
+    primeiraCartaVirada.classList.toggle('remover');
+    primeiraCartaVerso.classList.toggle('remover');
+    segundaCartaVirada.classList.toggle('remover');
+    segundaCartaVerso.classList.toggle('remover');  
+    resertarVariaveis();
+    iniciouEscolhaDosPares = false; //Finalizou a checagem dos pares, será permitido clicar em outra carta
+
+}
+
+function resertarVariaveis() {
+    primeiraCartaFoiVirada = false;
+    versoPassarinho = null;
+    frenteFigurinha = null;
+    primeiraCartaImagem = null;
+    segundaCartaImagem = null;
+    primeiraCartaVirada = null;
+    primeiraCartaVerso = null;
+    segundaCartaVirada = null;
+    segundaCartaVerso = null;
+}
+
+// verificarFinalJogo()
+
+function verificarFinalJogo() {
+    //se todas as cartas forem diferentes que a figura do passarinho, significa que o jogo terminou.
+    alert('Entrei p verificar se é final de jogo');
+    console.log('qtdeViradaCarta',qtdeViradaCarta);
+    console.log('qtdeTotalCartas',qtdeTotalCartas);
+    if (qtdeViradaCarta === qtdeTotalCartas){
+        console.log('numero bateu', qtdeViradaCarta); 
     }
 
 }
-
-
-function desvirarCartas(){
-    cartaVirada1.querySelector('.cartaVerso').style.display = "block";
-    cartaVirada1.querySelector('.cartaFrente').style.display = "none";
-    cartaVirada2.querySelector('.cartaVerso').style.display = "block";
-    cartaVirada2.querySelector('.cartaFrente').style.display = "none";
-    resetarJogada(); 
-    
-
-}
-
-function resetarJogada(){
-    primeiraCartaJaFoiVirada = false;
-    cartaVirada1 = null;
-    cartaVirada2 = null;
-    verificandoJogada = false;
-}
-    // QtdeVirada
-    // let cartaVirada1 = cartaFrente.innerHTML;
-    
-    // console.log('cartaVirada1',cartaVirada1);
-
-    // - testar se carta virada 1 é igual a carta virada2
-    // - criar uma variável par e só adiciona 1, só adiciona 1 quando as duas cartas derem certos. 
-
-
-
-// for(let i = 0; i < cartasSelecionadas.length; i++) {    
-
-//     cartas.innerHTML = cartas.innerHTML + `
-//                                       <div class='carta'>
-//                                           <div class='cartaVerso' onclick='virarCarta(this)'><img src="./imagens/front.png" ></div>                                                                                                                                             
-                                          
-//                                           <div class='cartaFrente' onclick='virarCarta(this)><img src="./imagens/${cartasSelecionadas[i]}" ></div> 
-                                         
-//                                       </div>
-//                                     `;                                      
-// }
-
-
-
-// function virarCarta(elemento) {
-    
-//     elemento.classList.add('viraCarta');
-// }
-    
