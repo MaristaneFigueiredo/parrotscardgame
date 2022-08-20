@@ -125,28 +125,58 @@ function virarCarta(carta) {
     frenteFigurinha.classList.toggle('remover'); 
 
     
-    if (primeiraCartaFoiVirada === false) {           
+    if (primeiraCartaFoiVirada === false) {   
+        console.log('primeiraCartaFoiVirada - Inicio do teste', primeiraCartaFoiVirada)     
         primeiraCartaVirada = carta.querySelector('.cartaFrente');
         primeiraCartaVerso = carta.querySelector('.cartaVerso');
         primeiraCartaImagem = carta.querySelector('.cartaFrente img').getAttribute('src'); 
-        primeiraCartaFoiVirada = true;      
+        primeiraCartaFoiVirada = true;
         
+        // console.log('console_contem remover',primeiraCartaVerso.classList.contains('remover'))
+        // if(primeiraCartaVerso.classList.contains('remover')) {
+            
+        //     // carta.onclick='';
+        //     primeiraCartaVirada;
+        // } 
+        // console.log('primeiraCartaFoiVirada - Fim do teste', primeiraCartaFoiVirada) 
+        // primeiraCartaQtdeCliques ++;        
+        // console.log('primeiraCartaQtdeCliques', primeiraCartaQtdeCliques )        
+        // primeiraCartaVerso.classList.contains('remover') ? primeiraCartaFoiVirada === true : primeiraCartaFoiVirada === false;
+        // console.log('status primeiraCartaFoiVirada ', primeiraCartaFoiVirada);
         
     } else {
         segundaCartaVirada = carta.querySelector('.cartaFrente');   
         segundaCartaVerso = carta.querySelector('.cartaVerso');   
         segundaCartaImagem = carta.querySelector('.cartaFrente img').getAttribute('src');
         
-  
+        // iniciouEscolhaDosPares = true; // Iniciou a checagem dos pares, não é permitido clicar em outra carta
+        // primeiraCartaVirada.setAttribute("onclick", "");
+        // segundaCartaVirada.setAttribute("onclick", "");
+        // carta.setAttribute("onclick", "");
+        // if (carta.getAttribute('onclick') !== null) {
+        //     console.log("'carta.getAttribute('onclick')", carta.getAttribute('onclick'));
+        //     carta.setAttribute("onclick", "");
+        //     console.log("'carta.getAttribute('onclick')", carta.getAttribute('onclick'));
+        // }
         
         // setTimeout(()=>verificarCartasPares(primeiraCartaImagem,segundaCartaImagem), 2000 );
    
         
-        verificarCartasPares(primeiraCartaImagem,segundaCartaImagem) ;              
+        verificarCartasPares(primeiraCartaImagem,segundaCartaImagem) 
+        
+        
+        //   console.log('voltei da checagem dos pares')
+        // //  carta.setAttribute('onclick', 'virarCarta(this)')
+        //  //  console.log('carta-onclick', carta.getAttribute('onclick'))
+        // carta.onclick='virarCarta(this)';
+        // console.log('carta-onclick', carta.getAttribute('onclick').onclick)
+        // //  carta.onclick()
+        
+       
         
     }  
     
-    verificarFinalJogo();
+    
 
 }
 
@@ -165,15 +195,15 @@ function verificarCartasPares (primeiraCartaImagem, segundaCartaImagem) {
        qtdeAcertos++;            
        console.log('qtdeAcertosExecutado', qtdeAcertos);
        iniciouEscolhaDosPares = false;
-    //    verificarFinalJogo();
+       verificarFinalJogo();
        resertarVariaveis();
      }
-    
+
 }
 
 function desvirarCartas(carta) {
    
-    // alert('pensando');
+    alert('pensando');
     // console.log('primeiraCartaVirada', primeiraCartaVirada);
     // console.log('segundaCartaVirada', segundaCartaVirada);
 
@@ -184,7 +214,6 @@ function desvirarCartas(carta) {
     resertarVariaveis();
     iniciouEscolhaDosPares = false; //Finalizou a checagem dos pares, será permitido clicar em outra carta
 
-    //  verificarFinalJogo();
 }
 
 function resertarVariaveis() {
@@ -207,22 +236,23 @@ function verificarFinalJogo() {
     
     // console.log('qtdeAcertos-FuncaoFinalJogo',  qtdeAcertos); 
   
-    let qtdeDivsComRemover = 0;
-    for(let i= 0; i < divCartasVersos.length; i++) {        
-        if (divCartasVersos[i].classList.contains('remover')) {
-            qtdeDivsComRemover++;    
-        } 
+    // let qtdeDivsComRemover = 0;
+    // for(let i= 0; i < divCartasVersos.length; i++) {        
+    //     if (divCartasVersos[i].classList.contains('remover')) {
+    //         qtdeDivsComRemover++;    
+    //     } 
         
-    } 
-    console.log('divCartasVersos.length', divCartasVersos.length);
-    console.log('qtdeDivsComRemover', qtdeDivsComRemover);
+    // } 
+    // console.log('divCartasVersos.length', divCartasVersos.length);
+    // console.log('qtdeDivsComRemover', qtdeDivsComRemover);
 
-    if (divCartasVersos.length === qtdeDivsComRemover) {
-        // alert('coincidiu');
-       
-       alert(`Você ganhou em ${qtdeAcertos} jogadas!`);
-        
-    }    
+    // if (divCartasVersos.length === qtdeDivsComRemover) {
+    //     alert('coincidiu');
+    // }
+ 
+
+
+
+    
 
 }
-
