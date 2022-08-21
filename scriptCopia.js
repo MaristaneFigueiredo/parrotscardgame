@@ -138,12 +138,14 @@ const imagensFrentes = ['bobrossparrot.gif', 'explodyparrot.gif', 'fiestaparrot.
             }
             
         
-        } else {         
+        } else {
+            
 
             cartaVirada2 = carta;
             segundaCartaVirada = carta.querySelector('.cartaFrente');   
             segundaCartaVerso = carta.querySelector('.cartaVerso');   
-            segundaCartaImagem = carta.querySelector('.cartaFrente img').getAttribute('src');   
+            segundaCartaImagem = carta.querySelector('.cartaFrente img').getAttribute('src');
+        
   
         
             // setTimeout(()=>verificarCartasPares(primeiraCartaImagem,segundaCartaImagem), 2000 );
@@ -153,7 +155,7 @@ const imagensFrentes = ['bobrossparrot.gif', 'explodyparrot.gif', 'fiestaparrot.
         
         }  
     
-        // verificarFinalJogo();
+        verificarFinalJogo();
 
     }
 
@@ -173,10 +175,10 @@ const imagensFrentes = ['bobrossparrot.gif', 'explodyparrot.gif', 'fiestaparrot.
             console.log('qtdeAcertosExecutado', qtdeAcertos);
             cartaVirada1.setAttribute("onclick", "");
             cartaVirada2.setAttribute("onclick", "");
-            iniciouEscolhaDosPares = false;                
+            iniciouEscolhaDosPares = false;
+            //    verificarFinalJogo();      
            
             resertarVariaveis();
-            verificarFinalJogo(); 
         }
     
     }
@@ -230,13 +232,10 @@ function verificarFinalJogo() {
 
     if (divCartasVersos.length === qtdeDivsComRemover) {
         // alert('coincidiu');
-        setTimeout(msgFinal,1000);
-    //    alert(`Você ganhou em ${qtdeAcertos} jogadas!`);
+       
+       alert(`Você ganhou em ${qtdeAcertos} jogadas!`);
         
     }    
-    function msgFinal(){
-        alert(`Você ganhou em ${qtdeAcertos} jogadas!`);
-    }
 
 }
 
