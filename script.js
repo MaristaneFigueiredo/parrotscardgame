@@ -8,7 +8,7 @@ Math.random ()  - valor aleatório gerado pela função entre 0 até 1.
 */
 
 
-let qtdeTotalCartas = prompt('Com quantas você deseja jogar?'); // 1
+let qtdeTotalCartas = prompt('Com quantas você deseja jogar?'); 
 const numeroMinCartas = 4;
 const numeroMaxCartas = 14;
 
@@ -34,7 +34,7 @@ const imagensFrentes = ['bobrossparrot.gif', 'explodyparrot.gif', 'fiestaparrot.
 
 
     let contador = 0;
-    while ((qtdeTotalCartas / 2) > contador) { //qtdeTotalCartas 4 entrará 2x
+    while ((qtdeTotalCartas / 2) > contador) { 
         cartas = document.querySelector('.cartas');   
 
 
@@ -153,7 +153,7 @@ const imagensFrentes = ['bobrossparrot.gif', 'explodyparrot.gif', 'fiestaparrot.
         
         }  
     
-        // verificarFinalJogo();
+        
 
     }
 
@@ -234,8 +234,14 @@ function verificarFinalJogo() {
     //    alert(`Você ganhou em ${qtdeAcertos} jogadas!`);
         
     }    
+    // function msgFinal(){
+    //     alert(`Você ganhou em ${qtdeAcertos} jogadas!`);
+    // }
+
+    
+
     function msgFinal(){
-        alert(`Você ganhou em ${qtdeAcertos} jogadas!`);
+        alert(`Você ganhou em ${qtdeViradaCarta} jogadas!`);
     }
 
 }
